@@ -17,4 +17,8 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
+    public WebAppInitializer() {
+        System.out.println("WebAppInitializer - constructor");
+    }
 }
