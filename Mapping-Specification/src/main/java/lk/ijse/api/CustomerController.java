@@ -26,8 +26,8 @@ public class CustomerController {
         return String.format("getCustomer(%s)",id);
     }*/
 
-    @GetMapping("/list")
-    public String getcussave(@RequestParam("id") String id ,@RequestParam("name")String name ,@RequestParam("age")String age ){
-        return String.format("Save customer id : %s \n name : %s \n age : %s",id,name,age);
+    @PostMapping("/list")
+    public String getcussave( @RequestParam("id") String id, @RequestParam("name") String name , @RequestParam("age") String age){
+             return String.format("Save customer id : %s \n name : %s \n age : %s",id,name,age);
     }
 }
