@@ -1,6 +1,9 @@
 package lk.ijse.api;
 
+import lk.ijse.dto.CustomerDTO;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/customer")
@@ -26,8 +29,20 @@ public class CustomerController {
         return String.format("getCustomer(%s)",id);
     }*/
 
-    @PostMapping("/list")
-    public String getcussave( @RequestParam("id") String id, @RequestParam("name") String name , @RequestParam("age") String age){
-             return String.format("Save customer id : %s \n name : %s \n age : %s",id,name,age);
+//    @PostMapping(value = "/list")
+//    public String getcussave( CustomerDTO customerDTO){
+//             return String.format("Save customer id : %s \n name : %s \n age : %s",customerDTO.getId(),customerDTO.getName(),customerDTO.getAge());
+//    }
+
+    @PostMapping(value = "/test")
+    public String getcussave(@RequestBody CustomerDTO customerDTO){
+//        return String.format("Save customer id : %s \n name : %s \n age : %s",customerDTO.getId(),customerDTO.getName(),customerDTO.getAge());
+  //      return String.format("Save customer id : %s \n name : %s \n age : %s",id,name,age);
+        return customerDTO.toString();
+    }
+
+    @GetMapping("/getall")
+    public CustomerDTO getall(){
+        return new CustomerDTO();
     }
 }
