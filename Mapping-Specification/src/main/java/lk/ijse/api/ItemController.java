@@ -30,5 +30,10 @@ public class ItemController {
         return  "getitemAsJson";
     }
 
+    @GetMapping(produces = MediaType.APPLICATION_XML_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String GetItem(){
+        return "getItem()";
+    }
+
 
 }
