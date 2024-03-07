@@ -41,7 +41,7 @@ public class CustomerController {
         return customerDTO.toString();
     }
 
-    @GetMapping("/getall")
+    @GetMapping(value = "/getall",produces = MediaType.APPLICATION_JSON_VALUE)
     public CustomerDTO getall(){
         return new CustomerDTO();
     }
