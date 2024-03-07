@@ -30,7 +30,14 @@ public class ItemController {
         return  "getitemAsJson";
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_XML_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+   /* @GetMapping(produces = MediaType.APPLICATION_XML_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String GetItem(){
+        return "getItem()";
+    }*/
+
+
+//    Need to reconsider
+    @GetMapping(headers = {"produces = application/xml","consumes = application/json"})
     public String GetItem(){
         return "getItem()";
     }
