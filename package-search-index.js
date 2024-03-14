@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"lk.ijse"},{"l":"lk.ijse.api"},{"l":"lk.ijse.dto"}];updateSearchResults();
