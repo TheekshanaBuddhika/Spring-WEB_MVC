@@ -16,8 +16,13 @@ public class OrderController {
         return String.format("getOrders (tokens = %s)",token);
     }*/
 
-    @GetMapping
+  /*  @GetMapping
     public String getOrders(@RequestHeader(value = "token", required = false) String token){
+        return String.format("getOrders (tokens = %s)",token);
+    }*/
+
+    @GetMapping(headers = "token")
+    public String getOrders(@RequestHeader String token){
         return String.format("getOrders (tokens = %s)",token);
     }
 
