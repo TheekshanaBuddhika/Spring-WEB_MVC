@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/order")
 public class OrderController {
 
-    @GetMapping
+    /*@GetMapping
     public String getOrders(){
         return "getOrders";
+    }*/
+
+    @GetMapping
+    public String getOrders(String token){
+        return String.format("getOrders (tokens = %s)",token);
     }
 
 
