@@ -1,6 +1,8 @@
 package lk.ijse.spring.api;
 
 import lk.ijse.spring.dto.CustomerDTO;
+import lk.ijse.spring.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,25 +14,32 @@ import java.util.ArrayList;
 @CrossOrigin("*")
 public class CustomerController {
 
+    @Autowired
+    CustomerService customerService;
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<CustomerDTO> getcustomer(){
 
-        ArrayList<CustomerDTO>CustomerDTOs= new ArrayList<>();
-        CustomerDTOs.add(0,new CustomerDTO("C001","Kamal","Galle"));
-        CustomerDTOs.add(1,new CustomerDTO("C002","Kamal","Matara"));
-        CustomerDTOs.add(2,new CustomerDTO("C003","Kamal","Colombo"));
-
-        return  CustomerDTOs;
+        return  customerService.getAllCustoemr();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void saveCustomer(@RequestBody CustomerDTO customerDTO){
 
-        System.out.println(customerDTO.toString());
-        return;
+        customerService.saveCustomer(customerDTO);
 
     }
+
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public  void updateCustomer(@RequestBody CustomerDTO customerDTO ){
+
+        customerService.updateCustomer(customerDTO);
+
+    }
+
+
 
 //    @DeleteMapping(value = "{/id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 //    @ResponseStatus(HttpStatus.NO_CONTENT)

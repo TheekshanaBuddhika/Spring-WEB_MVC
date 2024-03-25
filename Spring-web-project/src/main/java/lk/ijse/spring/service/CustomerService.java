@@ -2,11 +2,12 @@ package lk.ijse.spring.service;
 
 import lk.ijse.spring.dto.CustomerDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface CustomerService {
 
-    List<CustomerDTO> getAllCustoemr();
+    ArrayList<CustomerDTO> getAllCustoemr();
 
     CustomerDTO getCustomerDetails(String id);
 

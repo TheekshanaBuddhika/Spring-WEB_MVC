@@ -2,15 +2,18 @@ package lk.ijse.spring.service;
 
 import lk.ijse.spring.dto.CustomerDTO;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class CustomerServiceImpl implements CustomerService{
 
     ArrayList < CustomerDTO> arrayList = new ArrayList<>();
 
     @Override
-    public List<CustomerDTO> getAllCustoemr() {
+    public ArrayList<CustomerDTO> getAllCustoemr() {
         return arrayList;
     }
 
