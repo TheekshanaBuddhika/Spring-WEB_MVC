@@ -64,10 +64,10 @@ $('#btnSave').click(function () {
 });
 
 $('#btnDelete').click(function () {
-    const id = $('#txt-id').val();
+    var id = $('#txt-id').val();
 
     $.ajax({
-        url: "http://localhost:8080/app/api/v1/customer/" + id,
+        url: `http://localhost:8080/app/api/v1/customer/${id}`,
         method: "DELETE",
         success: function (resp, textStatus, jqxhr) {
             console.log("success: ", resp);
