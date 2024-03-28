@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class Transformer {
@@ -15,7 +16,7 @@ public class Transformer {
     @Autowired
     ModelMapper mapper;
 
-    public CustomerDTO fromCustomerEntity(Customer customer){
+    public CustomerDTO fromCustomerEntity(Optional<Customer> customer){
         return  mapper.map(customer, CustomerDTO.class);
 
     }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -30,22 +31,14 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public CustomerDTO getCustomerDetails(String id) {
 
-        CustomerDTO dto = null;
+        return transformer.fromCustomerEntity( customerRepo.findById(id));
 
-//        for (int i = 0  ; i< arrayList.size() ; i++ ){
-//
-//            if(arrayList.get(i).getId().equals(id)){
-//                dto = arrayList.get(i);
-//            }
-//        }
-
-        return dto;
     }
 
     @Override
     public void saveCustomer(CustomerDTO customerDTO) {
 
-
+         customerRepo.save(transformer.toCustomerEntity(customerDTO));
 
     }
 
