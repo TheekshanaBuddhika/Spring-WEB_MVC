@@ -2,7 +2,6 @@ package lk.ijse.spring.config;
 
 import jakarta.persistence.EntityManagerFactory;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

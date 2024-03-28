@@ -32,12 +32,12 @@ public class CustomerServiceImpl implements CustomerService{
 
         CustomerDTO dto = null;
 
-        for (int i = 0  ; i< arrayList.size() ; i++ ){
-
-            if(arrayList.get(i).getId().equals(id)){
-                dto = arrayList.get(i);
-            }
-        }
+//        for (int i = 0  ; i< arrayList.size() ; i++ ){
+//
+//            if(arrayList.get(i).getId().equals(id)){
+//                dto = arrayList.get(i);
+//            }
+//        }
 
         return dto;
     }
@@ -60,12 +60,12 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public void deleteCustomer(String id) {
 
-        for (int i = 0  ; i< arrayList.size() ; i++ ){
-
-            if(arrayList.get(i).getId().equals(id)){
-                arrayList.remove(i);
-            }
-        }
+//        for (int i = 0  ; i< arrayList.size() ; i++ ){
+//
+//            if(arrayList.get(i).getId().equals(id)){
+//                arrayList.remove(i);
+//            }
+//        }
 
     }
 }
