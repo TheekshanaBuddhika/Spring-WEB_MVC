@@ -2,16 +2,13 @@ package lk.ijse.spring.service;
 
 import lk.ijse.spring.dto.CustomerDTO;
 
-import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.repositories.CustomerRepo;
 import lk.ijse.spring.service.util.Transformer;
-import org.modelmapper.ModelMapper;
+import lk.ijse.spring.service.util.UtilMatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -25,20 +22,23 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public ArrayList<CustomerDTO> getAllCustoemr() {
 
-        return transformer.fromEntityList(customerRepo.findAll());
+        return (ArrayList<CustomerDTO>) customerRepo.findAll().stream()
+                .map(customer -> transformer.fromCustomerEntity(customer))
+                .toList();
+
     }
 
     @Override
     public CustomerDTO getCustomerDetails(String id) {
 
-        return transformer.fromCustomerEntity( customerRepo.findById(id));
+        return transformer.fromCustomerEntity( customerRepo.findById(id).get());
 
     }
 
     @Override
-    public void saveCustomer(CustomerDTO customerDTO) {
-
-         customerRepo.save(transformer.toCustomerEntity(customerDTO));
+    public CustomerDTO saveCustomer(CustomerDTO customerDTO) {
+            customerDTO.setId(UtilMatter.generateId());
+         return transformer.fromCustomerEntity(customerRepo.save(transformer.toCustomerEntity(customerDTO)));
 
     }
 

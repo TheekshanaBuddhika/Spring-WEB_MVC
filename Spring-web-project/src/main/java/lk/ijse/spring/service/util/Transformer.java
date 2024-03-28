@@ -16,7 +16,7 @@ public class Transformer {
     @Autowired
     ModelMapper mapper;
 
-    public CustomerDTO fromCustomerEntity(Optional<Customer> customer){
+    public CustomerDTO fromCustomerEntity(Customer customer){
         return  mapper.map(customer, CustomerDTO.class);
 
     }

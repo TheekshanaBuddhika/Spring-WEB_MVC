@@ -23,11 +23,11 @@ public class CustomerController {
         return  customerService.getAllCustoemr();
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveCustomer(@RequestBody CustomerDTO customerDTO){
+    public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
 
-        customerService.saveCustomer(customerDTO);
+        return customerService.saveCustomer(customerDTO);
 
     }
 
