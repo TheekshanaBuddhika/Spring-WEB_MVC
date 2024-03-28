@@ -4,6 +4,7 @@ package lk.ijse.spring.service;
 import lk.ijse.spring.dto.CustomerDTO;
 
 import lk.ijse.spring.repositories.CustomerRepo;
+import lk.ijse.spring.service.exception.NotFoundException;
 import lk.ijse.spring.service.util.Transformer;
 import lk.ijse.spring.service.util.UtilMatter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public CustomerDTO getCustomerDetails(String id) {
        if(!customerRepo.existsById(id)) {
-          throw  new RuntimeException("Customer id : "+id+" does not exsists");
+          throw  new NotFoundException("Customer id : "+id+" does not exsists");
        }
 
         return transformer.fromCustomerEntity(customerRepo.findById(id).get());
@@ -52,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public void updateCustomer(CustomerDTO customerDTO) {
         if(!customerRepo.existsById(customerDTO.getId())) {
-            throw  new RuntimeException("Customer id : "+customerDTO.getId()+" does not exsists");
+            throw  new NotFoundException("Customer id : "+customerDTO.getId()+" does not exsists");
         }
          customerRepo.save(transformer.toCustomerEntity(customerDTO));
 
