@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -24,9 +24,9 @@ public class CustomerServiceImpl implements CustomerService{
     Transformer transformer;
 
     @Override
-    public ArrayList<CustomerDTO> getAllCustoemr() {
+    public List<CustomerDTO> getAllCustoemr() {
 
-        return (ArrayList<CustomerDTO>) customerRepo.findAll().stream()
+        return customerRepo.findAll().stream()
                 .map(customer -> transformer.fromCustomerEntity(customer))
                 .toList();
 

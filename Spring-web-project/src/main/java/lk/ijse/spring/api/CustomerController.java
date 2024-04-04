@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customer")
@@ -21,7 +22,7 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<CustomerDTO> getcustomer(){
+    public List<CustomerDTO> getcustomer(){
 
         return  customerService.getAllCustoemr();
     }
