@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManagerFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -20,14 +21,20 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "lk.ijse.spring.repositories")
 public class JPAConfig {
 
+    Environment environment;
+
+    public JPAConfig(Environment environment){
+        this.environment=environment;
+    }
+
     @Bean
     public DataSource dataSource() {
 
         DriverManagerDataSource dmds = new DriverManagerDataSource();
-        dmds.setUrl("jdbc:mysql://localhost:3306/spring_web?createDatabaseIfNotExist=true");
-        dmds.setUsername("root");
-        dmds.setPassword("dragon25");
-        dmds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dmds.setUrl(environment.getRequiredProperty("spring.datasource.url"));
+        dmds.setUsername(environment.getRequiredProperty("spring.datasource.username"));
+        dmds.setPassword(environment.getRequiredProperty("spring.datasource.password"));
+        dmds.setDriverClassName(environment.getRequiredProperty("spring.datasource.driverClassName"));
         return dmds;
     }
 
@@ -37,7 +44,7 @@ public class JPAConfig {
         vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setShowSql(true);
         vendorAdapter.setDatabase(Database.MYSQL);
-        vendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
+        vendorAdapter.setDatabasePlatform(environment.getRequiredProperty("spring.jpa.hibernate.dialect"));
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
