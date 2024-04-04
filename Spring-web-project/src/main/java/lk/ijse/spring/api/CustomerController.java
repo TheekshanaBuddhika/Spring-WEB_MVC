@@ -2,6 +2,7 @@ package lk.ijse.spring.api;
 
 import jakarta.validation.Valid;
 import lk.ijse.spring.dto.CustomerDTO;
+import lk.ijse.spring.entity.Customer;
 import lk.ijse.spring.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Base64;
 
 @RestController
 @RequestMapping("/api/v1/customer")
@@ -24,11 +26,12 @@ public class CustomerController {
         return  customerService.getAllCustoemr();
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE , produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerDTO saveCustomer(@Valid @RequestBody CustomerDTO customerDTO){
-
-        return customerService.saveCustomer(customerDTO);
+    public CustomerDTO saveCustomer(@Valid @RequestPart("id") String id ,@RequestPart("name") String name , @RequestPart("address") String address, @RequestPart("profilePic") String profilepic ){
+        String base64Profilepic = Base64.getEncoder().encodeToString(profilepic.getBytes());
+        CustomerDTO customer = new CustomerDTO(id,name,address,base64Profilepic);
+        return customerService.saveCustomer(customer);
 
     }
 
